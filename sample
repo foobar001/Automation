@@ -1,0 +1,86 @@
+Public Function chvWorkDay(byVal delta , byVal dt ) 
+cdt = cdate(dt)
+if delta <> 0 then
+    if delta > 0 then
+      ddt = 1
+    else
+      ddt = -1
+      delta = - delta
+    end if
+
+    for i = 1 to delta 
+      do
+        cdt = cdt + ddt
+      loop while offdate(cdt)
+    next
+else
+    While offdate(cdt)
+        cdt = cdt + 1
+    Wend
+end if
+chvWorkDay = year(cdt)&"-"&zeroPad(Month(cdt),2)&"-"&zeroPad(Day(cdt),2)
+
+end function
+
+Public Function offdate(dt) 
+If dt = #1/1/2016# Then
+      offdate = true
+elseIf dt = #1/18/2016# Then
+      offdate = true
+elseIf dt = #2/15/2016# Then
+      offdate = true
+elseIf dt = #5/30/2016# Then
+      offdate = true
+elseIf dt = #7/4/2016# Then
+      offdate = true
+elseIf dt = #9/5/2016# Then
+      offdate = true
+elseIf dt = #10/10/2016# Then
+      offdate = true
+elseIf dt = #11/11/2016# Then
+      offdate = true
+elseIf dt = #11/24/2016# Then
+      offdate = true
+elseIf dt = #12/25/2016# Then
+      offdate = true
+elseIf dt = #1/1/2017# Then
+      offdate = true
+else
+    offdate = weekday(dt, 2) > 5
+End If
+end function
+
+Public Function zeroPad(anum,strlen)
+  rStr = cStr(anum)
+  jj = len(rStr)
+  If jj<strlen Then
+      For Iterator = jj+1 To strlen Step 1
+          rStr = "0"&rStr
+      Next
+  End If
+  zeroPad = rStr
+end function
+
+
+'==============================================================================================
+ 'Function to Create a Random Number of Any Length for Borrower Social Security Number
+ '=============================================================================================
+ Public Function fnRandomNumber(LengthOfRandomNumber)
+
+Dim sMaxVal : sMaxVal = ""
+Dim iLength : iLength = LengthOfRandomNumber
+
+'Find the maximum value for the given number of digits
+For iL = 1 to iLength
+ sMaxVal = sMaxVal & "9"
+Next
+ sMaxVal = Int(sMaxVal)
+
+'Find Random Value
+Randomize
+ iTmp = Int((sMaxVal * Rnd) + 1)
+'Add Trailing Zeros if required
+ iLen = Len(iTmp)
+ fnRandomNumber = iTmp * (10 ^(iLength - iLen))
+
+ End Function
