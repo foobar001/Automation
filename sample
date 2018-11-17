@@ -1,3 +1,7 @@
+'==============================================================================================
+ 'Function to create a Mortgage Issue Date
+ '=============================================================================================
+ 
 Public Function chvWorkDay(byVal delta , byVal dt ) 
 cdt = cdate(dt)
 if delta <> 0 then
