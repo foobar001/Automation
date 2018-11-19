@@ -1,0 +1,104 @@
+Dim Results
+Dim litAndformsPage
+Dim Rec1, Rec2, Rec3, Rec4, Rec5, Rec6, Rec7, Rec8, Rec9, Rec10
+Set litAndformsPage =  Browser("Literature & Forms-Search").Page("Literature & Forms-Search")
+'Browser("Literature & Forms-Search").Page("Literature & Forms-Search").Link("Announcement").Click
+
+
+DO WHILE litAndformsPage.Link("Next").Exist
+
+Results = litAndformsPage.WebElement("Numberof results").GetROProperty("innertext")
+
+	
+If litAndformsPage.WebElement("Record2").Exist Then
+	Rec1 = litAndformsPage.WebElement("Record1").GetROProperty("innertext")
+	Rec2 = litAndformsPage.WebElement("Record2").GetROProperty("innertext")
+		If Rec1 = Rec2 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+If litAndformsPage.WebElement("Record3").Exist Then
+
+	Rec3 = litAndformsPage.WebElement("Record3").GetROProperty("innertext")
+		If Rec2 = Rec3 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+If litAndformsPage.WebElement("Record4").Exist Then
+
+	Rec4 = litAndformsPage.WebElement("Record4").GetROProperty("innertext")
+		If Rec3 = Rec4 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+If litAndformsPage.WebElement("Record5").Exist Then
+
+	Rec5 = litAndformsPage.WebElement("Record5").GetROProperty("innertext")
+		If Rec4 = Rec5 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+
+If litAndformsPage.WebElement("Record6").Exist Then
+
+	Rec6 = litAndformsPage.WebElement("Record6").GetROProperty("innertext")
+		If Rec5 = Rec6 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+
+If litAndformsPage.WebElement("Record7").Exist Then
+
+	Rec7 = litAndformsPage.WebElement("Record7").GetROProperty("innertext")
+		If Rec6 = Rec7 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+
+If litAndformsPage.WebElement("Record8").Exist Then
+
+	Rec8 = litAndformsPage.WebElement("Record8").GetROProperty("innertext")
+		If Rec7 = Rec8 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+
+If litAndformsPage.WebElement("Record9").Exist Then
+
+	Rec9 = litAndformsPage.WebElement("Record9").GetROProperty("innertext")
+		If Rec2 = Rec3 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+
+If litAndformsPage.WebElement("Record10").Exist Then
+
+	Rec10 = litAndformsPage.WebElement("Record10").GetROProperty("innertext")
+		If Rec2 = Rec3 Then
+			Reporter.ReportEvent micFail, Results, "Duplicate Detected"
+		End If
+End  If
+
+
+If litAndformsPage.Link("Next").Exist Then
+	litAndformsPage.Link("Next").Click
+End  If
+
+LOOP
+
+
